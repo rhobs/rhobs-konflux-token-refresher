@@ -583,7 +583,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-rhobs-konflux-token-refresher
   workspaces:
   - name: git-auth
     secret:
