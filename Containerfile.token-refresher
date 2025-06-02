@@ -3,7 +3,7 @@
 
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_1.23 AS builder
 
-RUN dnf -y update && \
+RUN dnf -y update --allowerasing && \
 dnf -y install ca-certificates tzdata git make bash && \
 update-ca-trust && \
 dnf clean all
