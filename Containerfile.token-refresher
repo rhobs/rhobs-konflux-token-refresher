@@ -23,6 +23,8 @@ COPY --from=builder /etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/
 COPY --from=builder /opt/token-refresher /bin/token-refresher
 COPY --from=builder /opt/LICENSE /licenses/LICENSE
 
+USER 65532:65532
+
 ARG BUILD_DATE
 ARG VERSION
 ARG VCS_REF
