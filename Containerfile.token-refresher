@@ -11,8 +11,6 @@ dnf clean all
 ADD token-refresher /opt
 WORKDIR /opt
 
-RUN make vendor
-
 ARG TARGETOS TARGETARCH
 
 RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} make token-refresher
