@@ -3,21 +3,17 @@
 
 FROM quay.io/redhat-services-prod/openshift/boilerplate:image-v8.0.0 AS builder
 
-RUN dnf -y update --allowerasing && \
-dnf -y install ca-certificates tzdata git make bash && \
-update-ca-trust && \
-dnf clean all
+RUN dnf -y update --allowerasing && dnf clean all
 
 ADD token-refresher /opt
 WORKDIR /opt
 
 ARG TARGETOS TARGETARCH
 
-RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} make token-refresher
+RUN go build -o token-refresher .
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest AS runner
 
-COPY --from=builder /etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/
 COPY --from=builder /opt/token-refresher /bin/token-refresher
 COPY --from=builder /opt/LICENSE /licenses/LICENSE
 
