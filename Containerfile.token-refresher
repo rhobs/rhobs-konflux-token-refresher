@@ -1,7 +1,4 @@
-# Copyright Contributors to the Open Cluster Management project
-# Licensed under the Apache License 2.0
-
-FROM quay.io/redhat-services-prod/openshift/boilerplate:image-v8.0.0 AS builder
+FROM quay.io/redhat-services-prod/openshift/boilerplate:image-v8.4.1 AS builder
 
 RUN dnf -y update --allowerasing && dnf clean all
 
